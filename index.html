@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSV Display Example</title>
+</head>
+<body>
+  <h1>CSV File Data</h1>
+  <div id="csv-content"></div>
+
+  <script>
+    // Function to fetch the CSV file and display it
+    fetch('data.csv')
+      .then(response => response.text())
+      .then(data => {
+        // Split CSV data into rows
+        const rows = data.split('\n');
+        let htmlContent = '<table border="1">';
+
+        // Loop through rows and columns to create HTML table
+        rows.forEach((row, index) => {
+          const cells = row.split(',');
+          htmlContent += '<tr>';
+          cells.forEach(cell => {
+            htmlContent += `<td>${cell.trim()}</td>`;
+          });
+          htmlContent += '</tr>';
+        });
+
+        htmlContent += '</table>';
+        document.getElementById('csv-content').innerHTML = htmlContent;
+      })
+      .catch(error => console.error('Error loading the CSV file:', error));
+  </script>
+</body>
+</html>
