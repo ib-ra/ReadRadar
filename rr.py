@@ -3,18 +3,7 @@ from PIL import Image, ImageDraw
 from io import BytesIO
 
 def fetch_and_process_radar_image(image_url, center_point, radius, values_to_delete):
-    """
-    Fetches a radar image, crops it to a circle, and analyzes RGB values
-    
-    Args:
-        image_url (str): URL of the radar image
-        center_point (tuple): (x, y) coordinates for the center of the circle
-        radius (int): Radius of the circle to crop
-        values_to_delete (list): List of RGB tuples to filter out
-        
-    Returns:
-        tuple: Counts of pixels with RGB values below 5
-    """
+
     try:
         # Fetch the image
         response = requests.get(image_url)
@@ -43,17 +32,7 @@ def fetch_and_process_radar_image(image_url, center_point, radius, values_to_del
         return None
 
 def crop_image_circle(img, center, radius):
-    """
-    Crops an image to a circle using a mask
     
-    Args:
-        img (PIL.Image): Input image
-        center (tuple): (x, y) coordinates of the circle center
-        radius (int): Radius of the circle
-        
-    Returns:
-        PIL.Image: Cropped circular image
-    """
     # Create a mask image with the same size as the original image
     mask = Image.new('L', img.size, 0)
     draw = ImageDraw.Draw(mask)
