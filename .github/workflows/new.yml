@@ -24,7 +24,7 @@ jobs:
           pip install -r requirements.txt  # Gerekli Python paketlerini içeren dosya
 
       - name: Run script and generate CSV
-        run: python your_script.py  # CSV üreten script
+        run: python rrwt.py  # CSV üreten script
         
       - name: Setup Pages
         uses: actions/configure-pages@v2
